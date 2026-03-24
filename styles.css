@@ -370,13 +370,14 @@ section {
 .about-image {
   background: linear-gradient(135deg, #d4a373 0%, #b08968 100%);
   border-radius: var(--radius);
-  height: 450px;
+  height: 820px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-size: 1rem;
   font-weight: 300;
+  overflow: hidden;
 }
 
 .about-text h3 {
