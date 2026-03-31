@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__notebooklm-mcp__notebook_list",
+      "mcp__notebooklm-mcp__notebook_get",
+      "mcp__notebooklm-mcp__notebook_query",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:m.blog.naver.com)",
+      "WebFetch(domain:blog.naver.com)",
+      "WebSearch"
+    ]
+  }
+}

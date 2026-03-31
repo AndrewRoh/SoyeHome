@@ -276,10 +276,37 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
   color: #fff;
   overflow: hidden;
   padding: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  max-width: 1100px;
+  padding: 20px;
+  width: 100%;
+}
+
+.hero-photo {
+  flex-shrink: 0;
+  width: 340px;
+  height: 440px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  border: 4px solid rgba(255,255,255,0.2);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .hero-bg {
@@ -299,8 +326,52 @@ section {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 700px;
-  padding: 20px;
+  max-width: 600px;
+  text-align: left;
+}
+
+.hero-contact-bar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.hero-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  transition: all var(--transition);
+}
+
+.hero-contact-item:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.hero-contact-item i {
+  font-size: 1.3rem;
+  color: var(--color-primary-light);
+}
+
+.hero-contact-label {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.7;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+.hero-contact-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .hero-content .badge {
@@ -617,6 +688,30 @@ section {
   font-weight: 600;
   color: var(--color-primary);
   font-size: 1rem;
+}
+
+.price-group {
+  display: flex;
+  gap: 0;
+}
+
+.price-group .price {
+  min-width: 130px;
+  text-align: center;
+}
+
+.pricing-header-row {
+  background: var(--color-bg-section);
+}
+
+.pricing-header-row .price-label {
+  font-weight: 600;
+  color: var(--color-dark);
+  font-size: 0.88rem;
+}
+
+.pricing-header-row .price-label i {
+  margin-right: 4px;
 }
 
 .pricing-note {
@@ -1168,12 +1263,42 @@ section {
   }
 
   /* Hero */
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    padding-top: 90px;
+  }
+
+  .hero-photo {
+    width: 220px;
+    height: 280px;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-contact-bar {
+    justify-content: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
   .hero-content h1 {
     font-size: 2rem;
   }
 
   .hero-content p {
     font-size: 1rem;
+  }
+
+  /* Pricing gender columns */
+  .price-group .price {
+    min-width: 90px;
+    font-size: 0.85rem;
   }
 
   /* About */
@@ -1253,9 +1378,33 @@ section {
     font-size: 1.7rem;
   }
 
+  .hero-photo {
+    width: 180px;
+    height: 230px;
+  }
+
+  .hero-contact-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-contact-item {
+    width: 100%;
+    justify-content: center;
+  }
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+  }
+
+  .price-group .price {
+    min-width: 70px;
+    font-size: 0.78rem;
+  }
+
+  .pricing-row {
+    gap: 8px;
   }
 
   .btn {
