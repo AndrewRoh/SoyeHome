@@ -312,7 +312,7 @@ section {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #3a2a1a 0%, #5a3f2a 40%, #7a5a3a 100%);
+  background: url('images/blog/img_13.jpg') center center / cover no-repeat;
   z-index: 0;
 }
 
@@ -320,7 +320,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.55);
 }
 
 .hero-content {
