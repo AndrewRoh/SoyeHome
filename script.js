@@ -2,7 +2,7 @@
   'use strict';
 
   // ---- Sticky Header ----
-  const header = document.getElementById('header');
+  var header = document.getElementById('header');
   function handleScroll() {
     if (window.scrollY > 60) {
       header.classList.add('scrolled');
@@ -13,11 +13,11 @@
   window.addEventListener('scroll', handleScroll, { passive: true });
 
   // ---- Mobile Menu ----
-  const hamburger = document.getElementById('hamburger');
-  const navList = document.getElementById('navList');
+  var hamburger = document.getElementById('hamburger');
+  var navList = document.getElementById('navList');
 
   hamburger.addEventListener('click', function() {
-    const isOpen = navList.classList.toggle('open');
+    var isOpen = navList.classList.toggle('open');
     hamburger.classList.toggle('active');
     hamburger.setAttribute('aria-expanded', isOpen);
   });
@@ -31,8 +31,8 @@
   });
 
   // ---- Active Nav on Scroll ----
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = navList.querySelectorAll('a');
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = navList.querySelectorAll('a');
 
   function setActiveNav() {
     var scrollY = window.scrollY + 100;
@@ -75,11 +75,13 @@
   var faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(function(item) {
     var btn = item.querySelector('.faq-question');
+    if (!btn) return;
     btn.addEventListener('click', function() {
       var isActive = item.classList.contains('active');
       faqItems.forEach(function(i) {
         i.classList.remove('active');
-        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        var q = i.querySelector('.faq-question');
+        if (q) q.setAttribute('aria-expanded', 'false');
       });
       if (!isActive) {
         item.classList.add('active');
@@ -101,5 +103,58 @@
   backToTop.addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // ---- Scroll Reveal (IntersectionObserver) ----
+  var revealSelectors = [
+    '.service-card',
+    '.gallery-item',
+    '.process-step',
+    '.testimonial-card',
+    '.pricing-row',
+    '.contact-item',
+    '.about-stat',
+    '.section-header',
+    '.about-grid > *',
+    '.booking h2',
+    '.booking p',
+    '.booking-options'
+  ].join(',');
+
+  var revealEls = document.querySelectorAll(revealSelectors);
+
+  revealEls.forEach(function(el) {
+    el.classList.add('reveal');
+    // Stagger siblings within the same grid/flex parent
+    var siblings = Array.from(el.parentElement.children).filter(function(c) {
+      return c.classList.contains(el.classList[0]);
+    });
+    var idx = siblings.indexOf(el);
+    if (idx > 0) {
+      el.style.transitionDelay = (idx * 0.07) + 's';
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      io.observe(el);
+    });
+  } else {
+    // Fallback for older browsers
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
 
 })();
